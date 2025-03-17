@@ -1,8 +1,10 @@
+import Header from "./_components/landingPage/header";
+
 export default function Home() {
     return (
-        <div>
-
-        </div>
+        <section>
+            <Header />
+        </section>
     )
 }
   
