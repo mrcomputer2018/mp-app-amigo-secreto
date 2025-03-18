@@ -21,7 +21,7 @@ export default function Header() {
 
                 <nav>
                     <ul className="flex space-x-6">
-                        <button className="flex items-center space-x-1">
+                        <button className="flex items-center gap-1">
                             <User size={20}/>
                             Meus Grupos
                         </button>

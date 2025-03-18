@@ -1,9 +1,7 @@
-import Header from "./_components/landingPage/header";
-
 export default function Home() {
     return (
-        <section>
-            <Header />
+        <section className="bg-background dark:bg-dark-background w-screen h-screen">
+    
         </section>
     )
 }

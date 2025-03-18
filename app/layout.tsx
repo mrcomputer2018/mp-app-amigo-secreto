@@ -21,11 +21,11 @@ export default function RootLayout({
     return (
         <html lang="pt-br">
             <body
-                className={`${roboto.variable} antialiased dark`} suppressHydrationWarning
+                className={`${roboto.variable} antialiased`} suppressHydrationWarning
             >
                  <ThemeProvider
                     attribute="class"
-                    defaultTheme="system"
+                    defaultTheme="dark"
                     enableSystem
                     disableTransitionOnChange
                 >
