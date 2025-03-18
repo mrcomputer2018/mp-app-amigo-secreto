@@ -29,7 +29,7 @@ export default function NewGroupForm({loggedUser}: {loggedUser: LoggedUserProps}
     return (
         <Card className="w-full max-w-2xl mx-auto">
             <CardHeader>
-                <CardTitle>Novo Grupo</CardTitle>
+                <CardTitle className="text-xl">Novo Grupo</CardTitle>
                 <CardDescription>
                     Crie um novo grupo para compartilhar com seus amigos
                 </CardDescription>
@@ -49,8 +49,10 @@ export default function NewGroupForm({loggedUser}: {loggedUser: LoggedUserProps}
                         />
                     </div>
 
-                    <div className="space-y-2">
-                        <Label htmlFor="participants">Participantes</Label>
+                    <div className="space-y-2 mt-6">
+                        <Label htmlFor="participants" className="text-xl">
+                            Participantes
+                        </Label>
                         {participants.map((participant, index) => (
                             <div key={index} className="flex space-x-2">
                                 <Input 
