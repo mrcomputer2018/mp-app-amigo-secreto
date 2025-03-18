@@ -4,7 +4,8 @@ import { useState } from "react";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "../ui/card"
 import { Input } from "../ui/input";
 import { Label } from "../ui/label";
-import { Trash } from "lucide-react";
+import { Mail, Trash } from "lucide-react";
+import { Button } from "../ui/button";
 
 type LoggedUserProps = {
     id: string;
@@ -81,9 +82,9 @@ export default function NewGroupForm({loggedUser}: {loggedUser: LoggedUserProps}
                                     }} 
                                 />
 
-                                <button 
-                                    type="button" 
-                                    className="btn btn-danger"
+                                <Button
+                                    type="button"
+                                    variant='outline' 
                                     onClick={() => {
                                         const newParticipants = [...participants];
                                         newParticipants.splice(index, 1);
@@ -91,9 +92,20 @@ export default function NewGroupForm({loggedUser}: {loggedUser: LoggedUserProps}
                                     }}
                                 >             
                                     <Trash size={18}/>
-                                </button>
+                                </Button>
                             </div>
                         ))}
+                    </div>
+
+                    <div className="flex justify-between">
+                        <Button onClick={() =>{}}>
+                            Adicionar Amigo
+                        </Button>
+
+                        <Button onClick={() =>{}} className="bg-destructive text-white">
+                            <Mail size={18} className="mr-2"/>
+                            Criar grupo e enviar e-mails
+                        </Button>
                     </div>
                 </form>
             </CardContent>
