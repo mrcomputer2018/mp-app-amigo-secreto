@@ -1,4 +1,4 @@
-import { GiftIcon } from "lucide-react";
+import { GiftIcon, User } from "lucide-react";
 import { ModeToggle } from "../commons/ModeToggle";
 
 export default function Header() {
@@ -21,7 +21,10 @@ export default function Header() {
 
                 <nav>
                     <ul className="flex space-x-4">
-                        <button>Meus Grupos</button>
+                        <button className="flex items-center space-x-1">
+                            <User />
+                            Meus Grupos
+                        </button>
                         <button>Novo Grupo</button>
                     </ul>
                 </nav>
