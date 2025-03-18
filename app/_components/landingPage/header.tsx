@@ -1,5 +1,6 @@
-import { GiftIcon, User } from "lucide-react";
+import { GiftIcon, Plus, UserRound } from "lucide-react";
 import { ModeToggle } from "../commons/ModeToggle";
+import Link from "next/link";
 
 export default function Header() {
     return (
@@ -21,12 +22,15 @@ export default function Header() {
 
                 <nav>
                     <ul className="flex space-x-6">
-                        <button className="flex items-center gap-1">
-                            <User size={20}/>
+                        <Link href="/private/grupos" className="flex items-center gap-1">
+                            <UserRound size={18}/>
                             Meus Grupos
-                        </button>
+                        </Link>
 
-                        <button>Novo Grupo</button>
+                        <Link href="/private/grupos/novo"className="flex items-center gap-1">
+                            <Plus size={18}/>
+                            Novo Grupo
+                        </Link>
 
                         <ModeToggle />
                     </ul>
