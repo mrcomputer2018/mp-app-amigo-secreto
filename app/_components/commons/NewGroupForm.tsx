@@ -2,6 +2,8 @@
 
 import { useState } from "react";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "../ui/card"
+import { Input } from "../ui/input";
+import { Label } from "../ui/label";
 
 type LoggedUserProps = {
     id: string;
@@ -34,8 +36,18 @@ export default function NewGroupForm({loggedUser}: {loggedUser: LoggedUserProps}
             </CardHeader>
 
             <CardContent>
-                <form action="">
-
+                <form action="" className="space-y-4">
+                    <div className="space-y-2">
+                        <Label htmlFor="group-name">Nome do grupo</Label>
+                        <Input 
+                            id="group-name"
+                            name="group-name"
+                            type="text" 
+                            placeholder="Nome do grupo" 
+                            value={groupName} 
+                            onChange={(e) => setGroupName(e.target.value)} 
+                        />
+                    </div>
                 </form>
             </CardContent>
         </Card>
