@@ -48,6 +48,38 @@ export default function NewGroupForm({loggedUser}: {loggedUser: LoggedUserProps}
                             onChange={(e) => setGroupName(e.target.value)} 
                         />
                     </div>
+
+                    <div className="space-y-2">
+                        <Label htmlFor="participants">Participantes</Label>
+                        {participants.map((participant, index) => (
+                            <div key={index} className="flex space-x-2">
+                                <Input 
+                                    id={`participant-name-${index}`}
+                                    name={`participant-name-${index}`}
+                                    type="text" 
+                                    placeholder="Nome" 
+                                    value={participant.name} 
+                                    onChange={(e) => {
+                                        const newParticipants = [...participants];
+                                        newParticipants[index].name = e.target.value;
+                                        setParticipants(newParticipants);
+                                    }} 
+                                />
+                                <Input 
+                                    id={`participant-email-${index}`}
+                                    name={`participant-email-${index}`}
+                                    type="email" 
+                                    placeholder="E-mail" 
+                                    value={participant.email} 
+                                    onChange={(e) => {
+                                        const newParticipants = [...participants];
+                                        newParticipants[index].email = e.target.value;
+                                        setParticipants(newParticipants);
+                                    }} 
+                                />
+                            </div>
+                        ))}
+                    </div>
                 </form>
             </CardContent>
         </Card>
