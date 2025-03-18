@@ -20,16 +20,17 @@ export default function Header() {
                 </div>
 
                 <nav>
-                    <ul className="flex space-x-4">
+                    <ul className="flex space-x-6">
                         <button className="flex items-center space-x-1">
-                            <User />
+                            <User size={20}/>
                             Meus Grupos
                         </button>
+
                         <button>Novo Grupo</button>
+
+                        <ModeToggle />
                     </ul>
                 </nav>
-
-                <ModeToggle />
             </div>
         </header>
     )
