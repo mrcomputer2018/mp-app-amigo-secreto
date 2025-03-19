@@ -28,6 +28,10 @@ export default function NewGroupForm({loggedUser}: {loggedUser: LoggedUserProps}
 
     const [groupName, setGroupName] = useState<string>('');
 
+    function handleAddParticipant(name: string, email: string) {
+        setParticipants([...participants, {name: name, email: email}]);
+    }
+
     return (
         <Card className="w-full max-w-2xl mx-auto">
             <CardHeader>
@@ -98,7 +102,7 @@ export default function NewGroupForm({loggedUser}: {loggedUser: LoggedUserProps}
                     </div>
 
                     <div className="flex justify-between">
-                        <Button onClick={() =>{}}>
+                        <Button onClick={() => handleAddParticipant('', '')}>
                             Adicionar Amigo
                         </Button>
 
