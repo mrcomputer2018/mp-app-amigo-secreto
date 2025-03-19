@@ -1,12 +1,15 @@
 "use client"
 
-import { useState } from "react";
+import { useActionState, useEffect, useState } from "react";
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "../ui/card"
 import { Input } from "../ui/input";
 import { Label } from "../ui/label";
-import { Mail, Trash } from "lucide-react";
+import { Loader, Mail, MessageCircle, Trash } from "lucide-react";
 import { Button } from "../ui/button";
 import { Separator } from "../ui/separator";
+import createGroup, { CreateGroupState } from "@/app/(pages)/private/grupos/novo/action";
+import { toast } from "sonner"
+
 
 type LoggedUserProps = {
     id: string;
@@ -29,7 +32,16 @@ export default function NewGroupForm({loggedUser}: {loggedUser: LoggedUserProps}
 
     const [groupName, setGroupName] = useState<string>('');
 
-    
+    /* state e o retorno da minha action */
+    const [state, formAction, pending ] = useActionState<CreateGroupState, FormData>(
+        /* e uma action */
+        createGroup,
+        {
+            /* estado inicial */
+            success: null,
+            message: ''
+        }
+    );
 
     function handleAddParticipant(name: string, email: string) {
         setParticipants([...participants, {name: name, email: email}]);
@@ -45,6 +57,28 @@ export default function NewGroupForm({loggedUser}: {loggedUser: LoggedUserProps}
         setParticipants(newParticipants);
     }
 
+    useEffect(() => {
+        if(!state.success) {
+            toast('Error!!!', {
+                className: 'bg-background border border-red-600 text-red-600',
+                description: `Erro: ${state.message}`,
+                duration: 5000,
+                icon: <MessageCircle className='mr-2 h-4 w-4 !text-red-600'/>,
+            });
+        }
+
+        if(state.success) {
+            toast('Sucesso!!!', {
+                className: 'bg-background border border-green-600 text-green-600',
+                description: 'Grupo criado com sucesso!',
+                duration: 5000,
+                icon: <MessageCircle className='mr-2 h-4 w-4 !text-green-600'/>,
+            });
+        }
+
+    }, [state])
+        
+
     return (
         <Card className="w-full max-w-2xl mx-auto">
             <CardHeader>
@@ -55,7 +89,7 @@ export default function NewGroupForm({loggedUser}: {loggedUser: LoggedUserProps}
             </CardHeader>
 
             <CardContent>
-                <form action="" className="space-y-4">
+                <form action={formAction} className="space-y-4">
                     <div className="space-y-2">
                         <Label htmlFor="group-name">Nome do grupo</Label>
                         <Input 
@@ -74,6 +108,7 @@ export default function NewGroupForm({loggedUser}: {loggedUser: LoggedUserProps}
                         </Label>
                         {participants.map((participant, index) => (
                             <div key={index} className="flex flex-col md:flex-row space-x-2 md:space-x-4 space-y-2">
+                                <Label htmlFor={`name-${index}`} className="sr-only">Nome</Label>
                                 <Input 
                                     id={`name-${index}`}
                                     name={`name-${index}`}
@@ -85,6 +120,8 @@ export default function NewGroupForm({loggedUser}: {loggedUser: LoggedUserProps}
                                     }}
                                     required 
                                 />
+
+                                <Label htmlFor={`email-${index}`} className="sr-only">E-mail</Label>
                                 <Input 
                                     id={`email-${index}`}
                                     name={`email-${index}`}
@@ -141,6 +178,7 @@ export default function NewGroupForm({loggedUser}: {loggedUser: LoggedUserProps}
                         className="bg-destructive text-white w-full md:w-auto flex items-center">
                             <Mail size={18} className="mr-2"/>
                             Criar grupo e enviar e-mails
+                            { pending && <Loader className='animate-spin' /> }
                         </Button>
                     </CardFooter>
                 </form>
